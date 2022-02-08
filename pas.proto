@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.PAS";
+option java_outer_classname = "PASProto";
+option objc_class_prefix = "PAS";
+option go_package = "./";
+
+package pas;
+
+// The PAS service definition
+service PAS {
+  // get photon records from file (streaming)
+  rpc getPhotonRecordsStream (PhotonRecordsRequest) returns (stream PhotonRecordsReply) {}
+  // get photon records from file (streaming)
+  rpc getPhotonRecordsUnary (PhotonRecordsRequest) returns (PhotonRecordsReply) {}
+}
+
+message PhotonRecordsRequest {
+  string fileName = 1;
+}
+
+message PhotonRecordsReply {
+  repeated uint32 photonRecords = 1;
+}
+
